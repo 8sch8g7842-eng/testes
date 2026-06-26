@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Ardian — Universe</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Page 5 specific */
+      .ardian-hero {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 4rem 2rem;
+        overflow: hidden;
+      }
+      .ardian-hero h1 {
+        font-family: var(--f-display);
+        font-size: clamp(2.5rem, 8vw, 6rem);
+        font-style: italic;
+        color: var(--ice);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        opacity: 0;
+        animation: fadeUp 0.9s ease forwards 0.5s;
+      }
+      .ardian-hero h1 .gold {
+        color: var(--gold);
+      }
+
+      /* Orbit ring decoration */
+      .orbit-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(74, 159, 255, 0.12);
+        pointer-events: none;
+        animation: orbitRing linear infinite;
+      }
+      .orbit-ring::after {
+        content: "⭐";
+        position: absolute;
+        font-size: 0.8rem;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Photo hero section */
+      .ardian-photos {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 3rem 2rem;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .ardian-photo-frame {
+        background: rgba(11, 30, 61, 0.7);
+        border: 1px solid rgba(74, 159, 255, 0.2);
+        padding: 10px 10px 40px;
+        box-shadow: 0 20px 50px rgba(4, 8, 15, 0.5);
+        transition:
+          transform 0.35s,
+          box-shadow 0.35s;
+      }
+      .ardian-photo-frame:hover {
+        transform: rotate(0deg) scale(1.04) !important;
+        box-shadow: 0 30px 70px rgba(74, 159, 255, 0.15);
+      }
+      .ardian-photo-frame img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+      }
+      .ardian-photo-label {
+        font-family: var(--f-hand);
+        font-size: 1.1rem;
+        color: var(--star);
+        text-align: center;
+        margin-top: 8px;
+      }
+
+      /* Reasons grid */
+      .reasons-section {
+        position: relative;
+        z-index: 2;
+        padding: 5rem 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .reasons-section h2 {
+        font-family: var(--f-display);
+        font-style: italic;
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: var(--star);
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      .reasons-section .intro {
+        font-family: var(--f-body);
+        font-size: 0.85rem;
+        color: rgba(142, 200, 255, 0.5);
+        text-align: center;
+        font-style: italic;
+        margin-bottom: 3.5rem;
+      }
+
+      .reasons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.2rem;
+      }
+
+      .reason-card {
+        background: rgba(11, 30, 61, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(74, 159, 255, 0.15);
+        border-radius: 20px;
+        padding: 2rem;
+        transition: all 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+      .reason-card::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--electric), var(--blue));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s;
+      }
+      .reason-card:hover::before {
+        transform: scaleX(1);
+      }
+      .reason-card:hover {
+        border-color: rgba(74, 159, 255, 0.35);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(74, 159, 255, 0.1);
+      }
+
+      .reason-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+        display: block;
+      }
+      .reason-card h3 {
+        font-family: var(--f-display);
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--star);
+        margin-bottom: 0.7rem;
+      }
+      .reason-card p {
+        font-family: var(--f-hand);
+        font-size: 1.05rem;
+        color: rgba(232, 244, 255, 0.75);
+        line-height: 1.8;
+      }
+
+      /* Promise section */
+      .promise-section {
+        position: relative;
+        z-index: 2;
+        padding: 6rem 2rem;
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .promise-badge {
+        display: inline-block;
+        border: 1px solid rgba(74, 159, 255, 0.3);
+        border-radius: 50px;
+        padding: 8px 24px;
+        font-family: var(--f-body);
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 2rem;
+        background: rgba(21, 80, 162, 0.15);
+      }
+      .promise-text {
+        font-family: var(--f-hand);
+        font-size: clamp(1.3rem, 3vw, 1.8rem);
+        color: var(--ice);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+      .promise-text em {
+        font-style: normal;
+        color: var(--blue);
+      }
+      .promise-sign {
+        font-family: var(--f-display);
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--star);
+        margin-top: 2rem;
+        display: block;
+        letter-spacing: 1px;
+      }
+
+      /* Hidden birthday surprise */
+      #surprise-btn {
+        margin: 3rem auto 0;
+        display: block;
+        cursor: pointer;
+        font-family: var(--f-body);
+        font-size: 0.78rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(142, 200, 255, 0.4);
+        border: none;
+        background: none;
+        transition: color 0.3s;
+      }
+      #surprise-btn:hover {
+        color: var(--star);
+      }
+
+      #surprise-msg {
+        display: none;
+        position: relative;
+        z-index: 2;
+        max-width: 500px;
+        margin: 2rem auto 0;
+        background: rgba(11, 30, 61, 0.8);
+        border: 1px solid rgba(255, 209, 102, 0.3);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        animation: fadeUp 0.6s ease forwards;
+      }
+      #surprise-msg h3 {
+        font-family: var(--f-display);
+        font-style: italic;
+        font-size: 1.5rem;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      #surprise-msg p {
+        font-family: var(--f-hand);
+        font-size: 1.1rem;
+        color: var(--ice);
+        line-height: 1.8;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="starfield"></canvas>
+    <div id="page-transition"></div>
+
+    <a href="letter.html" class="back-nav" data-nav>← surat bintang</a>
+
+    <div id="music-player">
+      <button id="music-btn" aria-label="Play">♪</button>
+      <div>
+        <div class="music-label">Opera House — CAS</div>
+        <div class="music-sub">birthday edition</div>
+      </div>
+      <div class="music-wave">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     ARDIAN HERO
+     ══════════════════════════════════════ -->
+    <section class="ardian-hero">
+      <div class="nebula nebula-1" style="opacity: 0.15"></div>
+      <div class="nebula nebula-2" style="opacity: 0.12"></div>
+
+      <!-- Orbit rings -->
+      <div
+        class="orbit-ring"
+        style="
+          width: 300px;
+          height: 300px;
+          animation-duration: 20s;
+          opacity: 0.5;
+        "
+      ></div>
+      <div
+        class="orbit-ring"
+        style="
+          width: 450px;
+          height: 450px;
+          animation-duration: 35s;
+          animation-direction: reverse;
+          opacity: 0.3;
+        "
+      ></div>
+      <div
+        class="orbit-ring"
+        style="
+          width: 600px;
+          height: 600px;
+          animation-duration: 50s;
+          opacity: 0.2;
+        "
+      ></div>
+
+      <p
+        style="
+          font-family: &quot;Inter&quot;, sans-serif;
+          font-size: 0.72rem;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          color: var(--blue);
+          margin-bottom: 1.5rem;
+          opacity: 0;
+          animation: fadeUp 0.8s ease forwards 0.3s;
+          position: relative;
+          z-index: 5;
+        "
+      >
+        05 / 05 &nbsp;·&nbsp; the final chapter
+      </p>
+
+      <h1 style="position: relative; z-index: 5">
+        Tentang <span class="gold">Ardian</span><br />
+        <span style="font-size: 0.55em; font-weight: 300; color: var(--star)"
+          >si bintang paling terang di semestaku</span
+        >
+      </h1>
+
+      <p
+        style="
+          font-family: &quot;Caveat&quot;, cursive;
+          font-size: 1.2rem;
+          color: rgba(142, 200, 255, 0.7);
+          max-width: 500px;
+          line-height: 1.8;
+          opacity: 0;
+          animation: fadeUp 0.9s ease forwards 0.7s;
+          position: relative;
+          z-index: 5;
+        "
+      >
+        ada hal hal tentang kamu yang bikin aku kagum, tiap harinya.
+        dan aku mau kamu tau satu per satu. (susah banget cari fotomu bub, kamu ngirimnya dikit si)
+      </p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+     ARDIAN'S PHOTOS — Solo
+     ══════════════════════════════════════ -->
+    <div class="ardian-photos">
+      <div
+        class="ardian-photo-frame reveal"
+        style="width: 180px; transform: rotate(-4deg)"
+      >
+        <img
+          src="asset/9.jpg"
+          alt="Ardian"
+          style="width: 100%; aspect-ratio: 3/4"
+          onerror="this.src = 'https://picsum.photos/seed/ard9/180/240'"
+        />
+        <div class="ardian-photo-label">my man</div>
+      </div>
+      <div
+        class="ardian-photo-frame reveal"
+        style="width: 180px; transform: rotate(2deg); transition-delay: 0.1s"
+      >
+        <img
+          src="asset/10.jpg"
+          alt="Ardian"
+          style="width: 100%; aspect-ratio: 3/4"
+          onerror="this.src = 'https://picsum.photos/seed/ard10/180/240'"
+        />
+        <div class="ardian-photo-label">my love</div>
+      </div>
+      <div
+        class="ardian-photo-frame reveal"
+        style="width: 180px; transform: rotate(-2deg); transition-delay: 0.2s"
+      >
+        <img
+          src="asset/11.jpg"
+          alt="Ardian"
+          style="width: 100%; aspect-ratio: 3/4"
+          onerror="this.src = 'https://picsum.photos/seed/ard11/180/240'"
+        />
+        <div class="ardian-photo-label">my star 🌟</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     HAL-HAL TENTANG ARDIAN
+     ══════════════════════════════════════ -->
+    <section class="reasons-section">
+      <h2 class="reveal">Hal hal tentang Ardian</h2>
+      <p class="intro reveal">
+        Beberapa alasan aku suka kamu
+      </p>
+
+      <div class="accordion">
+        <details class="reason-item reveal">
+          <summary>u made my day</summary>
+          <p>
+            ngobrol sama kamu, cerita sama kamu tu buat aku selalu semangat ngejalanin hari.
+          </p>
+        </details>
+
+        <details class="reason-item reveal">
+          <summary>Kamu selalu nenangin aku</summary>
+          <p>
+            gatau gimana, kamu selalu bisa bikin semuanya kaya baik baik aja.
+          </p>
+        </details>
+
+        <details class="reason-item reveal">
+          <summary>kesabaran kamu luar biasa</summary>
+          <p>
+            makasih karena selalu sabar ngadepin aku, bahkan waktu aku sulit
+            dimengerti.
+          </p>
+        </details>
+
+        <details class="reason-item reveal">
+          <summary>kamu selalu bikin ikut senyum</summary>
+          <p>aku suka denger kamu ketawa. that simple.</p>
+        </details>
+
+        <details class="reason-item reveal">
+          <summary>aku bersyukur bisa kenal kamu</summary>
+          <p>
+            kenal kamu tu salah satu hal terbuaaik yang pernah ada di
+            hidupku.
+          </p>
+        </details>
+
+        <details class="reason-item reveal">
+          <summary>aku selalu bangga sama kamu</summary>
+          <p>
+            apa aja yang kamu lakuin, aku bakalan selalu dukung dan percaya
+            sama kamu.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+     THE FINAL PROMISE
+     ══════════════════════════════════════ -->
+    <section class="promise-section">
+      <div class="promise-badge reveal">janji dari aku</div>
+
+      <p class="promise-text reveal">
+        aku gaakan pernah nyesel ketemu dan kenal kamu.
+        <br /><br />
+        <em>kamu selalu punya seseorang yang bangga ke kamj.</em>
+        <br /><br />
+        aku selalu milih kamu — kalo diulang ratusan kali pun, aku bakal tetep pilih
+        kamu.
+        <br /><br />
+        setiap hari. setiap waktu. in every lifetime.
+      </p>
+
+      <div
+        style="
+          font-size: 2rem;
+          letter-spacing: 12px;
+          margin: 2rem 0;
+          opacity: 0.7;
+        "
+      >
+        💙 ⭐ 💙
+      </div>
+
+      <p class="promise-sign reveal">— dari orang yang paling sayang kamu</p>
+
+      <!-- Hidden surprise -->
+      <button id="surprise-btn" class="reveal">
+        ✦ ada satu kejutan lagi ✦
+      </button>
+      <div id="surprise-msg">
+        <h3>🎊 one last thing!</h3>
+        <p>
+          aku gaakan pernah cukup bilang how much u mean to me. jadi
+          aku cuma mau bilang lagi —
+          <br /><br />
+          <strong
+            style="
+              color: var(--gold);
+              font-family: &quot;Caveat&quot;, cursive;
+              font-size: 1.4rem;
+            "
+            >happy birthday, to the person i love the most. i love you. always.</strong
+          >
+          <br /><br />
+          semoga hari ini dan seterusnya selalu penuh sama hal hal yang bikin
+          kamu senyum. you deserve it. all of it. 🌟
+        </p>
+      </div>
+    </section>
+
+    <!-- FINAL NAV -->
+    <div
+      style="
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 3rem 2rem 6rem;
+      "
+    >
+      <div
+        class="star-divider reveal"
+        style="
+          font-size: 1rem;
+          letter-spacing: 12px;
+          color: var(--blue);
+          opacity: 0.5;
+          margin-bottom: 2.5rem;
+        "
+      >
+        ★ ✦ ★
+      </div>
+      <a href="index.html" class="back-home reveal" data-nav
+        >↑ kembali ke awal semesta</a
+      >
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // Surprise button
+      document
+        .getElementById("surprise-btn")
+        ?.addEventListener("click", function () {
+          const msg = document.getElementById("surprise-msg");
+          if (!msg) return;
+          msg.style.display = "block";
+          this.style.display = "none";
+          // big confetti burst
+          if (typeof launchConfetti === "function") launchConfetti();
+          else {
+            // inline fallback
+            const colors = [
+              "#4A9FFF",
+              "#FFD166",
+              "#8EC8FF",
+              "#FF6B9D",
+              "#FFFFFF",
+            ];
+            for (let i = 0; i < 80; i++) {
+              setTimeout(() => {
+                const el = document.createElement("div");
+                el.classList.add("confetti-piece");
+                el.style.left = 10 + Math.random() * 80 + "vw";
+                el.style.top = "-10px";
+                el.style.background =
+                  colors[Math.floor(Math.random() * colors.length)];
+                el.style.width = 6 + Math.random() * 8 + "px";
+                el.style.height = 6 + Math.random() * 8 + "px";
+                el.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+                el.style.animationDuration = 2 + Math.random() * 3 + "s";
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 5000);
+              }, i * 30);
+            }
+          }
+        });
+    </script>
+  </body>
+</html>
