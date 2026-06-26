@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galaksi Kenangan — Ardian</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📸</text></svg>"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="starfield"></canvas>
+    <div id="page-transition"></div>
+    <div class="shoot-wrap"></div>
+
+    <a href="birthday.html" class="back-nav" data-nav>← birthday</a>
+
+    <div id="music-player">
+      <button id="music-btn" aria-label="Play">♪</button>
+      <div>
+        <div class="music-label">Opera House — CAS</div>
+        <div class="music-sub">birthday edition</div>
+      </div>
+      <div class="music-wave">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     HERO
+     ══════════════════════════════════════ -->
+    <section class="memories-hero">
+      <p
+        style="
+          font-family: &quot;Inter&quot;, sans-serif;
+          font-size: 0.72rem;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          color: var(--blue);
+          margin-bottom: 1rem;
+          opacity: 0;
+          animation: fadeUp 0.8s ease forwards 0.3s;
+        "
+      >
+        03 / 05
+      </p>
+      <h1 style="opacity: 0; animation: fadeUp 0.9s ease forwards 0.5s">
+        Galaksi <em>Kenangan</em>
+      </h1>
+      <p style="opacity: 0; animation: fadeUp 0.9s ease forwards 0.7s">
+        hover atau sentuh foto-foto ini untuk sedikit kata dari aku ♡
+      </p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+     3D TILT PHOTO GRID — All 11 photos
+     ══════════════════════════════════════ -->
+    <div class="memory-grid" style="position: relative; z-index: 2">
+      <div class="memory-tile reveal">
+        <img
+          src="asset/1.jpg"
+          alt="kenangan 1"
+          onerror="this.src = 'https://picsum.photos/seed/m1/300/400'"
+        />
+        <div class="memory-tile-caption">ganteng banget ih kamu disini</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.05s">
+        <img
+          src="asset/2.jpg"
+          alt="kenangan 2"
+          onerror="this.src = 'https://picsum.photos/seed/m2/300/400'"
+        />
+        <div class="memory-tile-caption">ini kamu keliatan kaya panik, lucu</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.1s">
+        <img
+          src="asset/3.jpg"
+          alt="kenangan 3"
+          onerror="this.src = 'https://picsum.photos/seed/m3/300/400'"
+        />
+        <div class="memory-tile-caption">ini gemes, posenya sama ✌🏻</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.15s">
+        <img
+          src="asset/4.jpg"
+          alt="kenangan 4"
+          onerror="this.src = 'https://picsum.photos/seed/m4/300/400'"
+        />
+        <div class="memory-tile-caption">our first photo nih 🤭</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.2s">
+        <img
+          src="asset/5.jpg"
+          alt="kenangan 5"
+          onerror="this.src = 'https://picsum.photos/seed/m5/300/400'"
+        />
+        <div class="memory-tile-caption">kamunya ganteng akunya lepek</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.25s">
+        <img
+          src="asset/6.jpg"
+          alt="kenangan 6"
+          onerror="this.src = 'https://picsum.photos/seed/m6/300/400'"
+        />
+        <div class="memory-tile-caption">GEMASSS</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.3s">
+        <img
+          src="asset/7.jpg"
+          alt="kenangan 7"
+          onerror="this.src = 'https://picsum.photos/seed/m7/300/400'"
+        />
+        <div class="memory-tile-caption">couple goals kah ini</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.35s">
+        <img
+          src="asset/8.jpg"
+          alt="kenangan 8"
+          onerror="this.src = 'https://picsum.photos/seed/m8/300/400'"
+        />
+        <div class="memory-tile-caption">foto favorit ni bos</div>
+      </div>
+
+      <!-- Ardian solo photos 9-11 -->
+      <div class="memory-tile reveal" style="transition-delay: 0.4s">
+        <img
+          src="asset/9.jpg"
+          alt="Ardian"
+          onerror="this.src = 'https://picsum.photos/seed/m9/300/400'"
+        />
+        <div class="memory-tile-caption">sayangku, duniaku, semestaku</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.45s">
+        <img
+          src="asset/10.jpg"
+          alt="Ardian"
+          onerror="this.src = 'https://picsum.photos/seed/m10/300/400'"
+        />
+        <div class="memory-tile-caption"> nanti diedit ada aku ya</div>
+      </div>
+
+      <div class="memory-tile reveal" style="transition-delay: 0.5s">
+        <img
+          src="asset/11.jpg"
+          alt="Ardian"
+          onerror="this.src = 'https://picsum.photos/seed/m11/300/400'"
+        />
+        <div class="memory-tile-caption">
+          kiw ganteng
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     SHOOTING STAR MESSAGES
+     ══════════════════════════════════════ -->
+    <section class="shooting-messages-section">
+      <h2 class="reveal">Tembak Bintang</h2>
+      <p class="reveal">
+        klik untuk nembak bintang — tiap bintang bawa pesan buat kamu ✦
+      </p>
+
+      <button class="reveal" id="shoot-btn">
+        <span>🌟</span>
+        <span>tembak bintang!</span>
+      </button>
+
+      <div class="shot-message reveal" id="shot-message"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+     ROCKET LAUNCH
+     ══════════════════════════════════════ -->
+    <section
+      style="
+        position: relative;
+        z-index: 2;
+        padding: 3rem 2rem 6rem;
+        text-align: center;
+      "
+    >
+      <h2
+        class="reveal"
+        style="
+          font-family: &quot;Fraunces&quot;, serif;
+          font-style: italic;
+          font-size: clamp(1.8rem, 4vw, 2.8rem);
+          color: var(--star);
+          margin-bottom: 0.5rem;
+        "
+      >
+        launch ke halaman berikutnya
+      </h2>
+      <p
+        class="reveal"
+        style="
+          font-family: &quot;Inter&quot;, sans-serif;
+          font-size: 0.85rem;
+          color: rgba(142, 200, 255, 0.5);
+          margin-bottom: 2rem;
+          font-style: italic;
+        "
+      >
+        klik roket untuk meluncur 🚀
+      </p>
+
+      <div
+        id="rocket"
+        role="button"
+        aria-label="Launch rocket"
+        title="Click to launch!"
+      >
+        🚀
+      </div>
+
+      <div style="height: 2rem"></div>
+
+      <a
+        href="letter.html"
+        class="launch-btn reveal"
+        data-nav
+        style="margin-top: 1rem"
+      >
+        <span>atau langsung ke surat bintang</span><span>→</span>
+      </a>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+      // Rocket navigates to letter after launch animation
+      document.getElementById("rocket")?.addEventListener("click", function () {
+        this.classList.add("launching");
+        setTimeout(() => navigateTo("letter.html"), 1400);
+      });
+    </script>
+  </body>
+</html>
