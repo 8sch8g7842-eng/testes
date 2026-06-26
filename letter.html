@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Surat Bintang — Ardian</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div id="page-transition"></div>
+
+<a href="memories.html" class="back-nav" data-nav>← kenangan</a>
+
+<div id="music-player">
+  <button id="music-btn" aria-label="Play">♪</button>
+  <div>
+    <div class="music-label">Opera House — CAS</div>
+    <div class="music-sub">birthday edition</div>
+  </div>
+  <div class="music-wave"><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     LETTER HERO
+     ══════════════════════════════════════ -->
+<section class="letter-hero">
+  <!-- Nebula -->
+  <div class="nebula nebula-1" style="opacity:.12;"></div>
+  <div class="nebula nebula-2" style="opacity:.1;"></div>
+
+  <p style="font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--blue);margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s ease forwards .3s;position:relative;z-index:5;">04 / 05 &nbsp;·&nbsp; surat bintang</p>
+
+  <h1 style="opacity:0;animation:fadeUp .9s ease forwards .5s;position:relative;z-index:5;">
+    Sebuah Surat<br/><em>Untukmu</em>
+  </h1>
+  <p style="opacity:0;animation:fadeUp .9s ease forwards .7s;position:relative;z-index:5;font-family:'Caveat',cursive;font-size:1.15rem;color:var(--star);">
+    kata-kata yang aku tulis dari tempat paling jujur di dalam hati
+  </p>
+
+  <!-- Floating stars decoration -->
+  <div style="position:absolute;top:15%;left:12%;font-size:1.5rem;opacity:.4;animation:floatY 6s ease-in-out infinite;pointer-events:none;z-index:3;">✦</div>
+  <div style="position:absolute;top:20%;right:14%;font-size:1rem;opacity:.35;animation:floatY 8s ease-in-out infinite;animation-delay:1s;pointer-events:none;z-index:3;">★</div>
+  <div style="position:absolute;bottom:28%;left:8%;font-size:1.2rem;opacity:.3;animation:floatY 5s ease-in-out infinite;animation-delay:.5s;pointer-events:none;z-index:3;">💫</div>
+  <div style="position:absolute;bottom:25%;right:10%;font-size:.9rem;opacity:.4;animation:floatY 7s ease-in-out infinite;animation-delay:2s;pointer-events:none;z-index:3;">⭐</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THE TYPING LETTER
+     ══════════════════════════════════════ -->
+<section class="letter-section">
+  <div style="text-align:center;margin-bottom:2.5rem;">
+    <p style="font-family:'Inter',sans-serif;font-size:.75rem;color:rgba(142,200,255,.45);letter-spacing:2px;font-style:italic;">
+      ✦ &nbsp; scroll ke bawah — biarkan suratnya tertulis untukmu &nbsp; ✦
+    </p>
+  </div>
+
+  <div class="letter-paper reveal">
+    <!-- Watermark -->
+    <div style="position:absolute;bottom:24px;right:24px;font-size:4rem;opacity:.03;pointer-events:none;user-select:none;">⭐</div>
+    <div class="letter-lines"></div>
+
+    <p class="letter-date">hari ulang tahunmu &nbsp;·&nbsp; khusus untuk Ardian</p>
+    <span class="letter-dear">Untuk Ahmad ardian al abshor,</span>
+
+    <div class="typing-body" id="typing-output"></div>
+
+    <span class="letter-sign" id="letter-sign">
+      — dengan seluruh hati aku, selalu untukmu 💙
+    </span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     STAR WISH SKY
+     ══════════════════════════════════════ -->
+<section class="star-wish-section">
+  <h2 class="reveal">Langit Bintang Harapan</h2>
+  <p class="reveal">klik setiap bintang di langit ini — masing-masing nyimpan satu harapan buat kamu ✦</p>
+
+  <div class="wish-sky reveal" id="wish-sky">
+    <!-- Stars injected by JS -->
+    <!-- Subtle grid lines like a star map -->
+    <div style="position:absolute;inset:0;pointer-events:none;opacity:.06;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(74,159,255,1) 39px,rgba(74,159,255,1) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(74,159,255,1) 39px,rgba(74,159,255,1) 40px);border-radius:20px;"></div>
+    <!-- Moon -->
+    <div style="position:absolute;top:12%;right:10%;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFFDE8,#FFE878);box-shadow:0 0 20px rgba(255,232,120,.3);pointer-events:none;"></div>
+  </div>
+
+  <p class="reveal" style="font-family:'Inter',sans-serif;font-size:.75rem;color:rgba(142,200,255,.4);margin-top:1rem;font-style:italic;">
+    ada 6 bintang — temukan semuanya ✦
+  </p>
+</section>
+
+<!-- Wish popup -->
+<div class="wish-overlay" id="wish-overlay"></div>
+<div class="wish-popup" id="wish-popup">
+  <span class="wish-popup-icon" id="wp-icon">⭐</span>
+  <h3 id="wp-title">Harapan</h3>
+  <p id="wp-text"></p>
+  <div class="wish-popup-close" id="wp-close">tutup &nbsp; ✦</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     FINAL
+     ══════════════════════════════════════ -->
+<section class="final-cosmos">
+
+  <!-- Polaroid-style final photo -->
+  <div class="reveal" style="max-width:240px;margin:0 auto 3.5rem;background:rgba(11,30,61,.7);border:1px solid rgba(74,159,255,.2);padding:12px 12px 44px;box-shadow:0 20px 60px rgba(4,8,15,.5);transform:rotate(-1.5deg);position:relative;">
+    <img src="asset/9.jpg" alt="Ardian" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" onerror="this.src='https://picsum.photos/seed/ardian/240/320'"/>
+    <span style="font-family:'Caveat',cursive;font-size:1.2rem;color:var(--star);text-align:center;display:block;margin-top:10px;">the most handsome chelsea fans 💙</span>
+    <span style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:var(--electric);color:white;font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;border-radius:20px;white-space:nowrap;">bintang utamaku</span>
+  </div>
+
+  <p class="final-cosmos-quote reveal">
+    i can't even find the right words to explain how much you mean to me.
+  </p>
+
+  <p class="final-cosmos-sub reveal">
+    jadi aku buat ini. semuaaa ini
+    karena kamu deserve lebih dari sekedar kata kata.
+    sekali lagi, happy birthday, ardian. i love you. always.
+  </p>
+
+  <div style="font-size:1.8rem;letter-spacing:10px;margin-bottom:3rem;opacity:.6;position:relative;z-index:2;">
+    💙 &nbsp; ⭐ &nbsp; 💙
+  </div>
+
+  <a href="ardian.html" class="launch-btn reveal" data-nav>
+    <span>satu halaman lagi buat kamu</span><span>→</span>
+  </a>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
