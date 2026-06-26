@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Ahmad Ardian ✨</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div id="page-transition"></div>
+
+<!-- Music Player -->
+<div id="music-player">
+  <button id="music-btn" aria-label="Play">♪</button>
+  <div>
+    <div class="music-label">Opera House — CAS</div>
+    <div class="music-sub">birthday edition</div>
+  </div>
+  <div class="music-wave"><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO — THE LAUNCH
+     ══════════════════════════════════════ -->
+<section class="launch-hero">
+
+  <!-- Nebula glows -->
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+  <div class="nebula nebula-3"></div>
+
+  <!-- Floating deco -->
+  <div class="deco-float" style="top:12%;left:8%;animation-duration:5s;">🚀</div>
+  <div class="deco-float" style="top:18%;right:10%;animation-duration:7s;animation-delay:1s;font-size:1rem;">⭐</div>
+  <div class="deco-float" style="bottom:30%;left:6%;animation-duration:6s;animation-delay:.5s;font-size:1.1rem;">💫</div>
+  <div class="deco-float" style="bottom:28%;right:7%;animation-duration:8s;animation-delay:2s;font-size:.9rem;">🌙</div>
+
+  <div class="launch-content" style="position:relative;z-index:5;">
+    <p class="launch-eyebrow">✦ &nbsp; sebuah alam semesta untukmu &nbsp; ✦</p>
+
+    <h1 class="launch-title">
+      Happy Birthday
+      <span class="glow-name">Ahmad Ardian</span>
+    </h1>
+
+    <p class="launch-subtitle">dari orang yang paling sayang kamu</p>
+    <p class="launch-date">special edition &nbsp;·&nbsp; your day &nbsp;·&nbsp; your universe</p>
+
+    <!-- Interactive constellation draw -->
+    <canvas id="constellation-canvas" width="320" height="200" aria-label="Draw your constellation"></canvas>
+    <p class="constellation-hint">tap untuk gambar rasi bintang kamu sendiri ✦ double-tap untuk reset</p>
+
+    <button class="launch-btn" id="scroll-down-btn" onclick="document.getElementById('content-start').scrollIntoView({behavior:'smooth'})">
+      <span>masuk ke semestamu</span>
+      <span>↓</span>
+    </button>
+  </div>
+
+  <div class="scroll-stars">
+    <div class="scroll-star">★</div>
+    <div class="scroll-star">★</div>
+    <div class="scroll-star">★</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     INTRO TEXT
+     ══════════════════════════════════════ -->
+<section class="intro-section reveal" id="content-start">
+  <h2>Ada satu alam semesta yang aku buat khusus buat kamu.</h2>
+  <div class="star-divider">★ ✦ ★</div>
+  <p>
+    Di dalamnya ada beberapa foto, dan semua kata kata yang belum sempet aku ucapin,
+    semua rasa yang susah banget buat aku jelasin pake bahasa biasa.
+  </p>
+  <p>
+    Jadi hari ini, ulang tahunmu — aku bawa kamu ke sini.
+    Ke tempat paling jujur yang bisa aku ciptain buat kamu.
+  </p>
+  <div class="star-divider">★ ✦ ★</div>
+  <p style="font-size:1rem;color:rgba(142,200,255,.5);">
+    jelajahi setiap halaman. ada yang nunggu kamu di setiap sudutnya.
+  </p>
+</section>
+
+<!-- ══════════════════════════════════════
+     5-PAGE NAVIGATION
+     ══════════════════════════════════════ -->
+<nav class="nav-cosmos reveal">
+  <h2>pilih mau kemana dulu bos</h2>
+  <div class="cosmos-grid">
+
+    <a href="us.html" class="cosmos-card" data-nav>
+      <span class="cosmos-card-num">01 / 05</span>
+      <span class="cosmos-card-icon">💫</span>
+      <h3>Kita</h3>
+      <p>our picture, foto kita blur😋</p>
+      <span class="cosmos-card-arrow">→</span>
+    </a>
+
+    <a href="birthday.html" class="cosmos-card" data-nav>
+      <span class="cosmos-card-num">02 / 05</span>
+      <span class="cosmos-card-icon">🎂</span>
+      <h3>Happy Birthday</h3>
+      <p>tiup lilin, terima hadiah, dan selamat!</p>
+      <span class="cosmos-card-arrow">→</span>
+    </a>
+
+    <a href="memories.html" class="cosmos-card" data-nav>
+      <span class="cosmos-card-num">03 / 05</span>
+      <span class="cosmos-card-icon">📸</span>
+      <h3>Galaksi Kenangan</h3>
+      <p>beberapa foto terpilih ni</p>
+      <span class="cosmos-card-arrow">→</span>
+    </a>
+
+    <a href="letter.html" class="cosmos-card" data-nav>
+      <span class="cosmos-card-num">04 / 05</span>
+      <span class="cosmos-card-icon">✉️</span>
+      <h3>Surat Bintang</h3>
+      <p>kata kata hari ini, spesial buat dian</p>
+      <span class="cosmos-card-arrow">→</span>
+    </a>
+
+    <a href="ardian.html" class="cosmos-card" data-nav style="grid-column: span 1;">
+      <span class="cosmos-card-num">05 / 05</span>
+      <span class="cosmos-card-icon">🌟</span>
+      <h3>Tentang Ardian</h3>
+      <p>semua hal yang tentang kamu, yang bikin aku sayang</p>
+      <span class="cosmos-card-arrow">→</span>
+    </a>
+
+  </div>
+</nav>
+
+<!-- bottom glow -->
+<div style="height:100px;background:linear-gradient(180deg,transparent,rgba(21,80,162,.08));position:relative;z-index:2;"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
