@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday, Ardian! 🎂</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Birthday-only extras */
+      .bday-ribbon {
+        font-family: "Inter", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-align: center;
+        padding: 8px 0;
+        border-top: 1px solid rgba(255, 209, 102, 0.2);
+        border-bottom: 1px solid rgba(255, 209, 102, 0.2);
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeUp 0.8s ease forwards 0.2s;
+      }
+      #all-blown-msg {
+        font-family: "Caveat", cursive;
+        font-size: 1.5rem;
+        color: var(--gold);
+        margin-top: 1.5rem;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .wish-card p em {
+        font-style: normal;
+        color: var(--blue);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="starfield"></canvas>
+    <div id="page-transition"></div>
+
+    <a href="us.html" class="back-nav" data-nav>← kita</a>
+
+    <div id="music-player">
+      <button id="music-btn" aria-label="Play">♪</button>
+      <div>
+        <div class="music-label">Opera House — CAS</div>
+        <div class="music-sub">birthday edition</div>
+      </div>
+      <div class="music-wave">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     BIRTHDAY HERO
+     ══════════════════════════════════════ -->
+    <section class="bday-hero">
+      <!-- Nebula glow -->
+      <div
+        class="nebula"
+        style="
+          width: 500px;
+          height: 500px;
+          top: -20%;
+          left: -10%;
+          background: radial-gradient(
+            circle,
+            rgba(255, 209, 102, 0.2),
+            transparent 70%
+          );
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          pointer-events: none;
+        "
+      ></div>
+      <div
+        class="nebula"
+        style="
+          width: 400px;
+          height: 400px;
+          bottom: -10%;
+          right: -5%;
+          background: radial-gradient(
+            circle,
+            rgba(74, 159, 255, 0.15),
+            transparent 70%
+          );
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          pointer-events: none;
+        "
+      ></div>
+
+      <div style="position: relative; z-index: 5; text-align: center">
+        <div class="bday-ribbon">
+          02 / 05 &nbsp;·&nbsp; hari yang paling spesial
+        </div>
+
+        <h1 class="bday-title">Happy Birthday</h1>
+        <div class="bday-name">Ardian 🎉</div>
+        <p class="bday-sub">today you are the star of the entire universe</p>
+
+        <!-- Cake interaction -->
+        <div
+          class="cake-wrap"
+          style="position: relative; display: inline-block"
+        >
+          <div class="cake-glow"></div>
+          <span
+            class="cake-emoji"
+            id="cake-emoji"
+            role="button"
+            aria-label="Click me!"
+            >🎂</span
+          >
+        </div>
+        <p
+          class="cake-hint"
+          id="cake-hint"
+          style="
+            font-family: &quot;Inter&quot;, sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255, 209, 102, 0.55);
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+          "
+        >
+          ketuk kue untuk tiup lilinnya! 🕯️
+        </p>
+
+        <div style="height: 1.5rem"></div>
+
+        <button
+          class="launch-btn"
+          id="candle-btn"
+          style="
+            background: rgba(255, 209, 102, 0.12);
+            border-color: rgba(255, 209, 102, 0.4);
+          "
+        >
+          <span>🕯️</span><span>tiup lilin & rayakan!</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+     BLOW THE CANDLES — Interactive
+     ══════════════════════════════════════ -->
+    <section
+      class="candle-count-section"
+      style="position: relative; z-index: 2"
+    >
+      <h2
+        class="reveal"
+        style="
+          font-family: &quot;Fraunces&quot;, serif;
+          font-style: italic;
+          font-size: clamp(1.8rem, 4vw, 2.8rem);
+          color: var(--star);
+          text-align: center;
+          margin-bottom: 0.5rem;
+        "
+      >
+        tiup satu satu, masing masing punya wish
+      </h2>
+      <p
+        class="reveal"
+        style="
+          font-family: &quot;Inter&quot;, sans-serif;
+          font-size: 0.85rem;
+          color: rgba(142, 200, 255, 0.5);
+          text-align: center;
+          margin-bottom: 2rem;
+          font-style: italic;
+        "
+      >
+        klik setiap lilin untuk melihat harapannya ✦
+      </p>
+
+      <div class="candles-row">
+        <div
+          class="candle-item"
+          data-wish="semoga kamu selalu sehat dan bahagia tiap harinya"
+        >
+          <span class="flame">🕯️</span>
+          <div class="candle-wish">
+            semoga kamu selalu sehat dan bahagia tiap harinya
+          </div>
+        </div>
+
+        <div
+          class="candle-item"
+          data-wish="semoga semua impian kamu jadi kenyataan satu per satu ⭐"
+        >
+          <span class="flame">🕯️</span>
+          <div class="candle-wish">
+            semoga semua impian kamu jadi kenyataan satu per satu ⭐
+          </div>
+        </div>
+
+        <div
+          class="candle-item"
+          data-wish="semoga kamu terus kelilingin sama orang orang yang beneran sayang kamu 🌟"
+        >
+          <span class="flame">🕯️</span>
+          <div class="candle-wish">
+            semoga kamu terus dikelilingin sama orang orang yang beneran sayang
+            kamu 🌟
+          </div>
+        </div>
+
+        <div
+          class="candle-item"
+          data-wish="semoga kamu makin percaya diri dan makin sayang sama diri sendiri ✨"
+        >
+          <span class="flame">🕯️</span>
+          <div class="candle-wish">
+            semoga kamu makin percaya diri dan makin cinta sama diri sendiri ✨
+          </div>
+        </div>
+
+        <div
+          class="candle-item"
+          data-wish="semoga kita bisa terus deket kaya gini... dan lebih dari ini 💫"
+        >
+          <span class="flame">🕯️</span>
+          <div class="candle-wish">
+            semoga kita bisa terus deket kaya gini... dan lebih dari ini 💫
+          </div>
+        </div>
+      </div>
+
+      <p id="all-blown-msg">
+        semua harapan udah aku kirim ke langit buat kamu 🎉🎊
+      </p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+     BIRTHDAY MESSAGE CARDS
+     ══════════════════════════════════════ -->
+    <section class="bday-messages" style="position: relative; z-index: 2">
+      <h2 class="reveal">untukmu, di hari spesial ini</h2>
+
+      <div class="wish-card reveal">
+        <span class="wish-card-icon">🌟</span>
+        <h3>I wish</h3>
+        <p>
+          Bahagiamu ga pernah putus. selalu ketawa lepas. dan candamu selalu
+          hadir.
+        </p>
+      </div>
+
+      <div class="wish-card reveal" style="transition-delay: 0.1s">
+        <span class="wish-card-icon">💙</span>
+        <h3>Kalaupun nanti ada masalah</h3>
+        <p>
+          aku harap kamu selalu kuat. selalu inget kalo aku berusaha ada buat kamu. kamu ga
+          bakal sendiri.
+        </p>
+      </div>
+
+      <div class="wish-card reveal" style="transition-delay: 0.2s">
+        <span class="wish-card-icon">✨</span>
+        <h3>Karena Lahirmu</h3>
+        <p>
+          adalah hal yang paling aku syukuri. <em>Terima kasih banyak</em> udah
+          ada di dunia ini dan udah ngizinin aku buat kenal kamu.
+        </p>
+      </div>
+
+      <div class="wish-card reveal" style="transition-delay: 0.3s">
+        <span class="wish-card-icon">🎊</span>
+        <h3>Jangan bosen ya</h3>
+        <p>
+          buat terus berusaha. buat terus berjuang. i know u can do it.
+        </p>
+      </div>
+
+      <div class="wish-card reveal" style="transition-delay: 0.4s">
+        <span class="wish-card-icon">💫</span>
+        <h3>Last but absolutely not least</h3>
+        <p>
+          sekerwn kerennya kamu hari ini, aku tau kedepannya kamu bakalan jadi
+          lebih keren lagi. Aku ga sabar buat ngeliat kamu jadi versi yang paaling terbaik.
+          be happy my #1 
+        </p>
+      </div>
+    </section>
+
+    <!-- NEXT PAGE NAV -->
+    <div
+      style="
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 4rem 2rem;
+      "
+    >
+      <a href="memories.html" class="launch-btn reveal" data-nav>
+        <span>ke galaksi kenangan</span><span>→</span>
+      </a>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
